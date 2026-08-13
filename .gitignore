@@ -26,3 +26,27 @@ desktop.ini
 
 # A different project, kept locally.
 Refinery Utility Optimization Proposal.docx
+
+# ── Kept locally, not published ───────────────────────────────
+# Private preparation material.
+SPEAKER_NOTES.md
+CROSS_QUESTIONS.md
+UNDERSTAND_THIS_FIRST.md
+DEMO_SCRIPT.md
+PRANA_Final_Speaker_Notes.docx
+# Superseded strategy documents (contain pre-pivot figures).
+PRANA_MASTER_BRIEF.md
+PRANA_PLAYBOOK.md
+PRANA_SUBMISSION.md
+SUBMIT_THIS.md
+# Duplicate deliverables; the submitted PDFs are the record.
+Chlor-alkali_pitch_deck.pptx
+PRANA PPT.pptx
+PRANA_DECK.html
+# Intermediate artefacts and pre-pivot runs.
+outputs/demo_day_small.json
+outputs/backtest_fertilizer_forecast.csv
+outputs/backtest_fertilizer_perfect_foresight.csv
+outputs/backtest_forecast.csv
+outputs/backtest_perfect_foresight.csv
+evidence/compute_flex_value.py
