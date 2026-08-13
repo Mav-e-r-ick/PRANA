@@ -1,0 +1,301 @@
+<title>PRANA — Industrial Flexibility Intelligence</title>
+<style>
+:root{--ink:#141A21;--ink2:#39434F;--ink3:#6B7684;--paper:#EDEFF1;--paper2:#E3E7EA;
+--card:#F8F9FA;--cu:#B4643A;--vd:#2F7D6E;--am:#9E7714;--rd:#A03C32;--rule:#C9D0D6;
+--mono:ui-monospace,"SF Mono",Consolas,monospace;
+--gr:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+@media(prefers-color-scheme:dark){:root{--ink:#E8EBEE;--ink2:#AEB8C2;--ink3:#7C8794;
+--paper:#10151B;--paper2:#182029;--card:#161D25;--cu:#D98A5C;--vd:#5DAE9D;--am:#D7AC44;
+--rd:#D2705F;--rule:#2A343E}}
+:root[data-theme="dark"]{--ink:#E8EBEE;--ink2:#AEB8C2;--ink3:#7C8794;--paper:#10151B;
+--paper2:#182029;--card:#161D25;--cu:#D98A5C;--vd:#5DAE9D;--am:#D7AC44;--rd:#D2705F;--rule:#2A343E}
+:root[data-theme="light"]{--ink:#141A21;--ink2:#39434F;--ink3:#6B7684;--paper:#EDEFF1;
+--paper2:#E3E7EA;--card:#F8F9FA;--cu:#B4643A;--vd:#2F7D6E;--am:#9E7714;--rd:#A03C32;--rule:#C9D0D6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--gr);line-height:1.45;
+font-size:clamp(.92rem,1.05vw,1.05rem);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(1rem,3vw,2.2rem)}
+header{border-bottom:1px solid var(--rule);padding-bottom:.7rem;margin-bottom:1.3rem;
+display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+h1{font-size:clamp(1.5rem,2.9vw,2.2rem);margin:0;letter-spacing:-.028em;font-weight:800}
+h2{font-size:clamp(1.15rem,2vw,1.55rem);letter-spacing:-.02em}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;
+padding:.16em .5em;border:1px solid currentColor;border-radius:2px;white-space:nowrap;display:inline-block}
+.vd{color:var(--vd)}.am{color:var(--am)}.cu{color:var(--cu)}.rd{color:var(--rd)}
+.sub{font-family:var(--mono);font-size:.75rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
+.grid{display:grid;gap:1rem}.g2{grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr))}
+.card{background:var(--card);border:1px solid var(--rule);padding:.85rem 1rem}
+.card h3{margin:0 0 .5rem;font-size:.78rem;font-family:var(--mono);letter-spacing:.1em;
+text-transform:uppercase;color:var(--ink3);font-weight:500}
+.big{font-family:var(--mono);font-size:clamp(1.3rem,2.5vw,2rem);font-weight:600;
+letter-spacing:-.02em;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.k{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+color:var(--ink3);display:block;margin-top:.3rem;line-height:1.35}
+.row{display:flex;justify-content:space-between;gap:1rem;padding:.24rem 0;border-bottom:1px solid var(--rule)}
+.row:last-child{border-bottom:none}
+.row b{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+button{font:inherit;cursor:pointer;border-radius:2px}
+.btn2{background:none;border:1px solid var(--rule);color:var(--ink2);padding:.5em 1em;
+font-family:var(--mono);font-size:.78rem;letter-spacing:.06em}
+.btn2:hover{border-color:var(--cu);color:var(--ink)}
+.btn2[aria-pressed="true"]{border-color:var(--cu);color:var(--cu);background:var(--paper2)}
+.btn2:focus-visible,.opt:focus-visible{outline:2px solid var(--cu);outline-offset:2px}
+.sel{display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
+.opt{text-align:left;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--cu);
+padding:1rem;display:block;width:100%;color:var(--ink)}
+.opt:hover{border-color:var(--cu)}.opt[disabled]{opacity:.55;border-left-color:var(--ink3);cursor:default}
+.opt strong{display:block;font-size:1.05rem;margin-bottom:.25rem}
+.verdict{border:2px solid;padding:1rem 1.2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.verdict .v{font-family:var(--mono);font-size:clamp(1.2rem,2.4vw,1.85rem);font-weight:700;letter-spacing:.02em}
+.shift{border-color:var(--vd);color:var(--vd)}.nothing{border-color:var(--am);color:var(--am)}
+.verdict p{margin:0;color:var(--ink2);flex:1 1 260px;font-size:.93rem}
+label{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;
+text-transform:uppercase;color:var(--ink3);margin:.55rem 0 .12rem}
+input[type=range]{width:100%;accent-color:var(--cu)}
+.val{font-family:var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th,td{text-align:left;padding:.34rem .6rem .34rem 0;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+color:var(--ink3);font-weight:500}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.note{font-family:var(--mono);font-size:.73rem;color:var(--ink3);line-height:1.55;
+border-top:1px solid var(--rule);padding-top:.5rem;margin-top:1rem}
+ul{color:var(--ink2)}
+.tw{overflow-x:auto}
+</style>
+<div class="wrap">
+<header>
+  <div><h1>PRANA</h1><span class="sub">Industrial Flexibility Intelligence</span></div>
+  <div style="text-align:right"><span class="sub">How much electrical flexibility can this<br>process safely and economically use right now?</span></div>
+</header>
+<div id="app"></div>
+<p class="note">Production first · Safety first · Constraints first · Economics second.<br>
+PRANA is a decision-support layer. It does not control plant equipment, and it is built to be able to answer DO NOTHING.</p>
+</div>
+<script>
+const DEMO={"date":"2026-07-12","t":["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30"],"rtm":[10.0,10.0,10.0,4.5,4.1,4.66,4.1,4.21,3.881,5.191,4.647,4.647,4.862,3.999,1.618,2.55,2.069,1.959,1.618,1.613,0.399,0.1,0.05,0.023,0.01,0.01,0.001,0.024,0.049,0.398,1.349,1.547,1.268,1.573,2.3,2.577,1.438,2.558,3.837,3.001,3.001,3.001,4.093,4.913,5.19,10.0,10.0,10.0],"landed":[14.012,14.012,14.012,7.779,7.326,7.96,7.326,7.45,7.077,8.562,7.945,7.945,8.188,7.211,4.511,5.569,5.023,4.898,4.512,4.507,3.13,2.791,2.734,2.703,2.689,2.689,2.679,2.705,2.734,3.129,4.207,4.431,4.115,4.461,5.285,5.599,4.307,5.577,7.027,6.079,6.079,6.079,7.317,8.247,8.561,14.012,14.012,14.012],"flat_mw":[79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0,79.0],"prana_mw":[57.15,57.15,57.15,74.08,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,82.88,79.1,69.65,57.15,57.15,57.15],"flat_pct":[100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0],"prana_pct":[70.0,70.0,70.0,93.5,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,105.0,100.1,87.6,70.0,70.0,70.0],"inv":[897.8,893.4,889.0,887.0,887.7,888.5,889.2,889.9,890.7,891.4,892.1,892.9,893.6,894.3,895.0,895.8,896.5,897.2,898.0,898.7,899.4,900.2,900.9,901.6,902.3,903.1,903.8,904.5,905.3,906.0,906.7,907.5,908.2,908.9,909.6,910.4,911.1,911.8,912.6,913.3,914.0,914.8,915.5,915.9,914.7,911.0,906.6,902.2],"inv_min":300.0,"inv_max":1800.0,"inv_init":900.0,"floor_pct":70.0,"binding":["Demand charge is worth Rs 22,109 per MW of peak per day. Any shift that raises the peak must beat that on energy alone \u2014 the term an MCP-only optimizer omits.","Chlor-alkali cell house + caustic storage: the Cl2 consumer's minimum take binds in 11 blocks. It holds the cell house at 70% of design \u2014 well above the 40% safety interlock. THIS, not the cells, is the floor.","Chlor-alkali cell house + caustic storage: setpoint travel 20.4 t/h over the horizon, charged at Rs 24,528 of membrane life.","Deliberate deviation used in 0 blocks \u2014 the DSM rate is >= the real-time price by regulatory design, so deviation is never profitable."],"kpi":{"flat_bill":14101716,"prana_bill":13670393,"saved":431324,"flat_peak":79.0,"prana_peak":82.88,"flat_mwh":1896.0,"prana_mwh":1900.5,"flat_lc":7.438,"prana_lc":7.193,"dev":0.0,"cyc":24528,"nonenergy":46}};
+// ── Faithful port of prana/generic.py + prana/decision.py ──────────────────
+// Gate order is identical to the Python: hard constraint, then availability,
+// then economics. A high price alone never triggers an action.
+function envelope(g){
+  let floor=g.minStable/100*g.rate, why="unit minimum stable load";
+  if(g.dsMin>0){const d=g.dsMin/100*g.rate; if(d>floor){floor=d;why="downstream consumer minimum take";}}
+  if(g.hard){floor=g.rate;why=g.hardReason;}
+  return {floor:floor,ceiling:g.maxLoad/100*g.rate,design:g.rate,why:why,
+          floorPct:100*floor/g.rate,ceilPct:g.maxLoad};
+}
+function powerMW(g,rate){ if(rate<=0)return 0; const x=rate/g.rate,a=g.fixed,
+  c=0.20*(1-a),b=1-a-c; return g.mw*(a+b*x+c*x*x); }
+function rateForPower(g,target,lo,hi){ for(let i=0;i<60;i++){const m=(lo+hi)/2;
+  if(powerMW(g,m)<target)lo=m;else hi=m;} return (lo+hi)/2; }
+
+function flexCost(g,dMW,dur){
+  const e=envelope(g),pD=powerMW(g,g.rate),maxShed=Math.max(0,pD-powerMW(g,e.floor));
+  const usable=Math.max(0,g.inv-g.invMin);
+  const un=w=>({avail:false,cost:Infinity,perMWh:Infinity,maxShed:maxShed,maxDur:0,why:w});
+  if(g.hard) return un(g.hardReason);
+  if(dMW<=0||dur<=0) return {avail:true,cost:0,perMWh:0,maxShed:maxShed,maxDur:0,why:"no move requested"};
+  if(dMW>maxShed+1e-9) return un("exceeds available shed of "+maxShed.toFixed(1)+" MW ("+e.why+")");
+  const rDown=rateForPower(g,pD-dMW,e.floor,g.rate), gap=g.rate-rDown, short=gap*dur;
+  if(short>usable+1e-9) return un("buffer covers only "+(usable/Math.max(1e-9,gap)).toFixed(1)+" h at this depth");
+  const rebuildRate=e.ceiling-g.rate;
+  if(rebuildRate<=1e-9) return un("no headroom above design to rebuild inventory");
+  const rebuildH=short/rebuildRate;
+  const rampH=gap/Math.max(1e-9,g.rampDown/100*g.rate)+gap/Math.max(1e-9,g.rampUp/100*g.rate);
+  if(rampH+g.recovery>=dur) return un("ramp + recovery needs "+(rampH+g.recovery).toFixed(1)+
+    " h, longer than the "+dur.toFixed(1)+" h window");
+  const eFlat=pD*(dur+rebuildH);
+  const eFlex=powerMW(g,rDown)*dur+powerMW(g,e.ceiling)*rebuildH;
+  const extra=Math.max(0,eFlex-eFlat);
+  const cost=extra*1000+gap*2*g.wear+short*g.penalty;
+  return {avail:true,cost:cost,perMWh:cost/Math.max(1e-9,dMW*dur),
+          maxShed:maxShed,maxDur:usable/Math.max(1e-9,gap),why:e.why};
+}
+
+function decide(g,dMW,dur,pNow,pLater){
+  const e=envelope(g),q=flexCost(g,dMW,dur);
+  if(g.hard) return {action:"DO NOTHING",code:"HARD_CONSTRAINT",
+    reason:"Production constraint prevents flexibility: "+g.hardReason+".",
+    benefit:0,cost:0,net:0,shift:0,margin:0,
+    detail:["Hard constraints are evaluated before economics.",
+            "The electricity price was not considered at all."]};
+  if(!q.avail){let code="NO_USABLE_FLEXIBILITY";const w=q.why.toLowerCase();
+    if(w.indexOf("buffer")>=0)code="INVENTORY_CONSTRAINT";
+    else if(w.indexOf("ramp")>=0||w.indexOf("recovery")>=0)code="RECOVERY_CONSTRAINT";
+    return {action:"DO NOTHING",code:code,reason:"No usable flexibility: "+q.why+".",
+      benefit:0,cost:0,net:0,shift:0,margin:0,
+      detail:["Maximum safe shed at this operating point: "+q.maxShed.toFixed(1)+" MW."]};}
+  const benefit=Math.max(0,dMW)*Math.max(0,dur)*1000*(pNow-pLater);
+  const net=benefit-q.cost, margin=q.maxShed>0?100*(1-dMW/q.maxShed):NaN;
+  if(net<=0) return {action:"DO NOTHING",code:"PROCESS_COST_EXCEEDS_BENEFIT",
+    reason:"Process flexibility cost exceeds electricity benefit — ₹"+fmt(q.cost)+
+           " to save ₹"+fmt(benefit)+".",
+    benefit:benefit,cost:q.cost,net:net,shift:0,margin:margin,
+    detail:["Flexibility is available ("+q.maxShed.toFixed(1)+" MW) but costs ₹"+
+            fmt(q.perMWh)+"/MWh shifted.","The plant is better off doing nothing."]};
+  return {action:"SHIFT",code:"ECONOMIC_FLEXIBILITY",
+    reason:"Shift "+dMW.toFixed(1)+" MW for "+dur.toFixed(1)+" h — net benefit ₹"+fmt(net)+".",
+    benefit:benefit,cost:q.cost,net:net,shift:dMW,margin:margin,
+    detail:["Process cost ₹"+fmt(q.perMWh)+"/MWh shifted.",
+            "Operating floor "+e.floorPct.toFixed(0)+"% of design ("+e.why+").",
+            "Maximum safe duration "+q.maxDur.toFixed(1)+" h."]};
+}
+function bestShift(g,dur,pNow,pLater){
+  const ceil=flexCost(g,1e-9,dur).maxShed;
+  if(!(ceil>0)) return decide(g,0,dur,pNow,pLater);
+  let best=null;
+  for(let i=1;i<=24;i++){const d=ceil*i/24,dec=decide(g,d,dur,pNow,pLater);
+    if(dec.action==="SHIFT"&&(!best||dec.net>best.net))best=dec;}
+  return best||decide(g,ceil,dur,pNow,pLater);
+}
+const fmt=n=>!isFinite(n)?"∞":Math.round(n).toLocaleString("en-IN");
+const badge=s=>'<span class="tag '+(s==="VALIDATED"?"vd":s==="ILLUSTRATIVE"?"am":"cu")+'">'+s+'</span>';
+const kpi=(v,k,c)=>'<div class="card"><span class="big '+(c||"")+'">'+v+'</span><span class="k">'+k+'</span></div>';
+
+const G={mw:100,rate:50,minStable:60,maxLoad:108,rampUp:40,rampDown:40,recovery:0,
+  inv:900,invMin:200,invMax:1800,draw:50,fixed:0.06,wear:0,penalty:0,dsMin:55,
+  hard:false,hardReason:"downstream unit on fixed take — co-product cannot be stored"};
+const MKT={peak:9.20,off:2.40,dur:2.0};
+const app=document.getElementById("app");
+
+function home(){
+  app.innerHTML=
+  '<p class="sub" style="margin-bottom:.7rem">Select demonstration</p><div class="sel">'+
+  '<button class="opt" onclick="go(\'ca\')"><strong>Chlor-alkali</strong>'+badge("VALIDATED")+
+  '<p style="margin:.5rem 0 0;color:var(--ink2);font-size:.9rem">700 TPD cell house. Physics grounded '+
+  'in a Government of India cell-voltage law, replayed over 120 real delivery days, every schedule '+
+  're-verified against the true nonlinear physics.</p></button>'+
+  '<button class="opt" onclick="go(\'gen\')"><strong>Generic process</strong>'+badge("ILLUSTRATIVE")+
+  '<p style="margin:.5rem 0 0;color:var(--ink2);font-size:.9rem">A configurable continuous process '+
+  'with a buffer. Same optimiser, same decision logic, same safety architecture — different physics. '+
+  'Requires plant calibration.</p></button></div>'+
+  '<p class="sub" style="margin:1.4rem 0 .7rem">Framework ready — calibration required</p><div class="sel">'+
+  '<button class="opt" disabled><strong>Refinery utilities</strong><span class="tag">NOT AVAILABLE — PLANT DATA REQUIRED</span></button>'+
+  '<button class="opt" disabled><strong>Fertiliser</strong><span class="tag">NOT AVAILABLE — PLANT DATA REQUIRED</span></button>'+
+  '<button class="opt" disabled><strong>Hydrogen electrolyser</strong><span class="tag">NOT AVAILABLE — PLANT DATA REQUIRED</span></button></div>'+
+  '<p class="note">No savings figure is shown for an archetype that has not been calibrated against '+
+  'plant data. The framework accepts them; the evidence does not exist yet, and inventing one would '+
+  'be the only unsourced number in this application.</p>';
+}
+
+function chlorAlkali(){
+  const K=DEMO.kpi;
+  app.innerHTML=
+  '<button class="btn2" onclick="go(\'home\')">← All demonstrations</button>'+
+  '<h2 style="margin:.9rem 0 .2rem">Chlor-alkali cell house '+badge("VALIDATED")+'</h2>'+
+  '<p class="sub">Case study · '+DEMO.date+' · real settled IEX prices · MERC tariff order, page 100</p>'+
+  '<div class="grid g4" style="margin:1rem 0">'+
+  kpi("₹"+(K.saved/1e5).toFixed(2)+" L","Avoided on this day","vd")+
+  kpi(K.prana_peak.toFixed(2)+" MW","Peak billing demand — was "+K.flat_peak.toFixed(2),"am")+
+  kpi("₹"+K.prana_lc.toFixed(3),"Landed ₹/kWh paid — was "+K.flat_lc.toFixed(3),"vd")+
+  kpi("0","Violations vs true physics","vd")+'</div>'+
+  '<div class="grid g2"><div class="card"><h3>Safe operating envelope</h3>'+
+  '<div class="row"><span>Design rate</span><b>29.2 t/h NaOH</b></div>'+
+  '<div class="row"><span>Deliverable floor</span><b>'+DEMO.floor_pct+'% of design</b></div>'+
+  '<div class="row"><span>Floor set by</span><b>Cl₂ consumer minimum take</b></div>'+
+  '<div class="row"><span>Cell safety interlock</span><b>40% — not binding</b></div>'+
+  '<p class="note">Chlorine is made stoichiometrically and cannot be stored. The downstream '+
+  'consumer\'s turndown — not the cell\'s own safety limit — is what caps the shed. This is the '+
+  'constraint that halved the usable flexibility, and an independent 2021 paper validated on real '+
+  'plant data reaches the same conclusion.</p></div>'+
+  '<div class="card"><h3>Equivalent flexibility <span class="tag am">REPRESENTATION</span></h3>'+
+  '<div class="row"><span>Power</span><b>21.8 MW</b></div>'+
+  '<div class="row"><span>Duration</span><b>34.2 h</b></div>'+
+  '<div class="row"><span>Energy-equivalent</span><b>748 MWh</b></div>'+
+  '<p class="note">Virtual-battery representation of safe process flexibility. This is a market '+
+  'representation, not a change in the plant\'s primary function, and not a physical battery — '+
+  'it cannot export to the grid.</p></div></div>'+
+  '<div class="card" style="margin-top:1rem"><h3>Why this schedule — from the solver, not a language model</h3>'+
+  '<ul style="margin:0;padding-left:1.1rem">'+DEMO.binding.map(b=>"<li>"+b+"</li>").join("")+'</ul></div>'+
+  '<div class="card" style="margin-top:1rem"><h3>120-day replay '+badge("VALIDATED")+'</h3><div class="tw"><table>'+
+  '<tr><th>Metric</th><th class="n">With forecast error</th><th class="n">Perfect foresight</th></tr>'+
+  '<tr><td>Saving per kWh of total plant load</td><td class="n">₹0.133</td><td class="n">₹0.174</td></tr>'+
+  '<tr><td>Annualised</td><td class="n">₹9.17 cr</td><td class="n">₹12.07 cr</td></tr>'+
+  '<tr><td>Days worse than doing nothing</td><td class="n">13 of 120</td><td class="n">0</td></tr>'+
+  '<tr><td>Constraint violations</td><td class="n">0</td><td class="n">0</td></tr></table></div>'+
+  '<p class="note">Net of membrane wear, chlorine diverted to the bleach plant and power-factor '+
+  'droop — together 20% of the gross saving. This demonstration day saves 1.72× the 120-day mean. '+
+  'The prices and the tariff are real; the plant is a modelled archetype, not a named site.</p></div>';
+}
+
+function slider(id,label,min,max,step,val,unit){
+  return '<label for="'+id+'">'+label+' <span class="val" id="'+id+'v">'+val+(unit||"")+'</span></label>'+
+  '<input type="range" id="'+id+'" min="'+min+'" max="'+max+'" step="'+step+'" value="'+val+
+  '" oninput="setG(\''+id+'\',this.value,\''+(unit||"")+'\')">';
+}
+function setG(id,v,unit){
+  v=parseFloat(v); document.getElementById(id+"v").textContent=v+unit;
+  const set={mw:()=>G.mw=v,minStable:()=>G.minStable=v,maxLoad:()=>G.maxLoad=v,
+    ramp:()=>{G.rampUp=v;G.rampDown=v;},inv:()=>G.inv=v,fixed:()=>G.fixed=v/100,
+    wear:()=>G.wear=v*1000,dsMin:()=>G.dsMin=v,dur:()=>MKT.dur=v,peak:()=>MKT.peak=v};
+  if(set[id])set[id]();
+  renderResult();
+}
+function toggleHard(){G.hard=!G.hard;generic();}
+function preset(k){
+  Object.assign(G,{mw:100,rate:50,maxLoad:108,recovery:0,invMin:200,invMax:1800,draw:50,penalty:0});
+  if(k==="A")Object.assign(G,{minStable:60,rampUp:40,rampDown:40,inv:900,fixed:0.06,wear:0,dsMin:55,hard:false});
+  if(k==="B")Object.assign(G,{minStable:80,maxLoad:106,rampUp:40,rampDown:40,inv:900,
+    fixed:0.55,wear:45000,penalty:8000,dsMin:0,hard:false});
+  if(k==="C")Object.assign(G,{minStable:60,rampUp:40,rampDown:40,inv:900,fixed:0.06,wear:0,dsMin:0,hard:true});
+  generic();
+}
+
+function generic(){
+  app.innerHTML=
+  '<button class="btn2" onclick="go(\'home\')">← All demonstrations</button>'+
+  '<h2 style="margin:.9rem 0 .2rem">Generic continuous process '+
+  badge(G.hard?"USER CONFIGURED":"ILLUSTRATIVE")+'</h2>'+
+  '<p class="sub">Same optimiser · same decision logic · different physics · requires plant calibration</p>'+
+  '<div class="card" style="margin-top:1rem"><h3>Preset scenarios — identical market, different process</h3>'+
+  '<div style="display:flex;gap:.5rem;flex-wrap:wrap">'+
+  '<button class="btn2" onclick="preset(\'A\')">A · Economic flexibility</button>'+
+  '<button class="btn2" onclick="preset(\'B\')">B · Process cost too high</button>'+
+  '<button class="btn2" onclick="preset(\'C\')">C · Hard production constraint</button></div>'+
+  '<p class="note">Two of the three end in DO NOTHING on the same electricity price. A system that '+
+  'always finds a reason to act is not an optimiser.</p></div>'+
+  '<div class="grid g2" style="margin-top:1rem"><div class="card"><h3>Process configuration</h3>'+
+  slider("mw","Design electrical load",20,300,5,G.mw," MW")+
+  slider("minStable","Unit minimum stable load",30,100,1,G.minStable,"%")+
+  slider("dsMin","Downstream consumer minimum take",0,100,1,G.dsMin,"%")+
+  slider("ramp","Ramp rate",2,60,1,G.rampUp,"%/h")+
+  slider("fixed","Fixed / standby share of load",2,70,1,Math.round(G.fixed*100),"%")+
+  slider("wear","Equipment wear per unit moved",0,60,1,Math.round(G.wear/1000)," k₹")+
+  slider("inv","Buffer inventory now",250,1800,10,G.inv," t")+
+  '<div style="margin-top:.9rem"><button class="btn2" aria-pressed="'+G.hard+'" onclick="toggleHard()">'+
+  (G.hard?"✓ ":"")+'Hard production constraint active</button></div>'+
+  '<p class="note">Illustrative parameters. This model does not represent any real plant, and no '+
+  'number it produces may be quoted as a saving.</p></div>'+
+  '<div><div class="card"><h3>Market conditions</h3>'+
+  slider("peak","Landed price now (peak)",2,14,.1,MKT.peak," ₹/kWh")+
+  slider("dur","Flexibility window",0.5,6,.5,MKT.dur," h")+
+  '<div class="row" style="margin-top:.5rem"><span>Off-peak price to shift into</span><b>₹'+
+  MKT.off.toFixed(2)+'/kWh</b></div></div><div id="res" style="margin-top:1rem"></div></div></div>';
+  renderResult();
+}
+
+function renderResult(){
+  const box=document.getElementById("res"); if(!box)return;
+  const d=bestShift(G,MKT.dur,MKT.peak,MKT.off), e=envelope(G), q=flexCost(G,1e-9,MKT.dur);
+  box.innerHTML=
+  '<div class="verdict '+(d.action==="SHIFT"?"shift":"nothing")+'"><span class="v">'+d.action+
+  '</span><p>'+d.reason+'</p></div>'+
+  '<div class="card" style="margin-top:1rem"><h3>Why — from the model, not a language model</h3>'+
+  '<div class="row"><span>Reason code</span><b>'+d.code+'</b></div>'+
+  '<div class="row"><span>Safe operating envelope</span><b>'+e.floorPct.toFixed(0)+'% – '+
+  e.ceilPct.toFixed(0)+'% of design</b></div>'+
+  '<div class="row"><span>Floor set by</span><b>'+e.why+'</b></div>'+
+  '<div class="row"><span>Available downward flexibility</span><b>'+q.maxShed.toFixed(1)+' MW</b></div>'+
+  '<div class="row"><span>Electricity benefit</span><b>₹'+fmt(d.benefit)+'</b></div>'+
+  '<div class="row"><span>Process flexibility cost</span><b>₹'+fmt(d.cost)+'</b></div>'+
+  '<div class="row"><span>Net benefit</span><b style="color:'+(d.net>0?"var(--vd)":"var(--am)")+
+  '">₹'+fmt(d.net)+'</b></div>'+
+  (isFinite(d.margin)?'<div class="row"><span>Constraint margin</span><b>'+d.margin.toFixed(0)+'%</b></div>':"")+
+  '<ul style="margin:.6rem 0 0;padding-left:1.1rem;font-size:.88rem">'+
+  d.detail.map(x=>"<li>"+x+"</li>").join("")+'</ul></div>';
+}
+
+function go(v){({home:home,ca:chlorAlkali,gen:generic})[v]();window.scrollTo(0,0);}
+home();
+</script>

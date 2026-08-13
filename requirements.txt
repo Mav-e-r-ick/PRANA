@@ -1,0 +1,13 @@
+# PRANA — core (all pure-python or wheels available for Python 3.11–3.14)
+pandas>=2.0
+numpy>=1.26
+pulp>=3.0            # MILP modelling; ships the CBC solver binary
+lightgbm>=4.0        # quantile price forecasting
+scikit-learn>=1.4
+streamlit>=1.40      # console
+plotly>=5.20         # charts
+
+# Optional: the constraint agent runs on an LLM when a provider SDK is
+# installed and an API key is set. Without it PRANA falls back to a deterministic
+# parser and reports which backend ran.
+# anthropic>=0.40

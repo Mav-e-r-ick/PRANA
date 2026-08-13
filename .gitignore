@@ -1,0 +1,28 @@
+__pycache__/
+*.pyc
+# The market panel and trained model SHIP with the repo: they are real settled
+# data and a real fitted model. A repo that cannot reproduce its own headline
+# is not evidence. Only raw vendor dumps are excluded.
+data/raw_iex/
+# Backtest results ship: beat 8 of the demo reads them, and a cold clone that
+# renders a blank replay slide is a failed demo.
+outputs/*.log
+.venv/
+
+# Confidential plant data -- provided for local reference only.
+# MUST NOT be committed, zipped into a submission, or published.
+*.xlsx
+*.xls
+plant_data/
+
+# The deck is a deliverable and ships.
+!PRANA_DECK.html
+
+# Plant-derived artefacts. These contain a real site's operating data and must
+# never be published. Kept locally for reference only.
+REAL_PLANT_ANNEXE.html
+outputs/real_plant_dispatch.csv
+desktop.ini
+
+# A different project, kept locally.
+Refinery Utility Optimization Proposal.docx
